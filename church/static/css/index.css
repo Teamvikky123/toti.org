@@ -1,0 +1,220 @@
+/* Color of the links BEFORE scroll */
+.navbar-scroll .nav-link,
+.navbar-scroll .navbar-toggler-icon,
+.navbar-scroll .navbar-brand {
+  color: #fff;
+}
+
+/* Color of the links AFTER scroll */
+.navbar-scrolled .nav-link,
+.navbar-scrolled .navbar-toggler-icon,
+.navbar-scrolled .navbar-brand {
+  color: #fff;
+}
+
+/* Color of the navbar AFTER scroll */
+.navbar-scroll,
+.navbar-scrolled {
+  background-color: #cbbcb1;
+}
+
+.mask-custom {
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, .15);
+}
+
+.navbar-brand {
+  font-size: 1.75rem;
+  letter-spacing: 3px;
+}
+
+.bgimg{
+    border: 1px solid black;
+}
+
+.flex-div{
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url(../img/DSC.jpg) no-repeat ;
+    /* background-image: linear-gradient(to bottom, red, yellow) url(../img/bgdn.jpeg); */
+    background-size: cover;
+    background-position: center;
+}
+body{
+
+}
+
+.text-container{
+    /* border: 1px solid rgb(255, 255, 255); */
+    height: 29rem;
+    width: 85rem;
+    
+}
+
+.first-text{
+    font-size: 80px;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.button-div{
+    display: flex;
+    justify-content: center;
+    margin: 80px;
+    gap: 300px;
+}
+.button-join{
+    background-color: rgb(15, 192, 59);
+    border-radius: 7px;
+    border: none;
+    margin: 10px;
+    width: 120px;
+    height: 60px;
+}
+
+.button-join:hover{
+    background-color: black;
+    color: white;
+}
+
+.button-watch{
+    background-color: aqua;
+    border-radius: 7px;
+    border: none;
+    margin: 10px;
+    width: 100px;
+}
+
+.button-give{
+    background-color: rgb(173, 21, 79);
+    border-radius:7px;
+    border: none;
+    margin: 10px;
+    width: 100px;
+}
+
+
+
+.container {
+	margin: 20px;
+  display:flex;
+  flex-wrap: wrap;
+	gap: 10px 20px;
+}
+
+.pentagon-1 {
+	position: relative;
+	width: 157.5px;
+	height: 150px;
+	background: #4169e1;
+	clip-path: polygon( 50% 0, 100% 38%, 81% 100%, 19% 100%, 0 38%);
+}
+
+#imageContainer {
+    /* width: 400px;
+    height: 300px; */
+    background-size: cover;
+    background-position: center;
+    border: 2px solid black;
+    margin: 0;
+    padding: 0;
+    height: 500px;
+    width: 100%;
+    background-repeat: no-repeat;
+
+}
+#imageContainer {
+    transition: background-image 1s ease-in-out;
+}
+
+.secacc{
+    display: flex;
+    flex-direction: row;
+}
+
+.rc{
+  margin-top: 100px;
+  align-content: center;
+  /* text-align: center; */
+  font-size: 40px;
+  color: white;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin-left: 10px;
+
+}
+
+.sprc{
+  color: yellow;
+}
+
+.smrc{
+  color: rgb(255, 255, 255);
+  font-size: 50px;
+}
+
+
+
+@media (max-width: 834px){
+  .button-div{
+    gap: 150px;
+    margin: 2px;
+    
+  }
+  .hexgon{
+    display: grid;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 30px;
+    background-color: rgb(255, 252, 252);
+  }
+
+  
+}
+
+
+@media (max-width: 575px) {
+  body{
+    width: 100%;
+  }
+  .navbar-brand img {
+      width: 30px;
+      height: 30px;
+  }
+
+  .hexgon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    width: 100%;
+    margin-left: 20px;
+  }
+
+  .pastorscard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  .button-div{
+    gap: 10px;
+    margin: 2px;
+    
+  }
+
+  .rc {
+      font-size: 18px;
+      text-align: center;
+  }
+}
