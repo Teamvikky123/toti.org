@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Login</h2>
+    <form id="loginForm">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <br>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <br>
+        <button type="submit">Login</button>
+        <p id="errorMessage" class="error"></p>
+    </form>
+</div>
+
+<script>
+    // Dummy user data (In real applications, this should come from a server)
+    const users = {
+        "gbemisola": "gbemi",  // username: password
+        "user2": "mypassword"
+    };
+
+    // Handle form submission
+    document.getElementById("loginForm").addEventListener("submit", function (event) {
+        event.preventDefault();  // Prevent form from submitting normally
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const errorMessage = document.getElementById("errorMessage");
+
+        // Check if username exists and password matches
+        if (username in users) {
+            if (users[username] === password) {
+                alert("Login successful!");
+                window.location.href = "../pages/members.html";  // Redirect to a different page
+            } else {
+                errorMessage.textContent = "Incorrect password. Please try again.";
+            }
+        } else {
+            errorMessage.textContent = "Username does not exist.";
+        }
+    });
+</script>
+
+</body>
+</html>

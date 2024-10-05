@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Form Example with Table</title>
+    <!-- Firebase App (the core Firebase SDK) -->
+<script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"></script>
+
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <script type="module">
+       
+  function updateToFirebase() {
+    // Get form input values
+    const firstName = document.getElementById('form6Example1').value;
+    const lastName = document.getElementById('form6Example2').value;
+    const companyName = document.getElementById('form6Example3').value;
+    const address = document.getElementById('form6Example4').value;
+    const email = document.getElementById('form6Example5').value;
+    const phone = document.getElementById('form6Example6').value;
+    const additionalInfo = document.getElementById('form6Example7').value;
+
+    // Update data to Firebase Realtime Database
+    firebase.database().ref('formData').set({
+      firstName: firstName,
+      lastName: lastName,
+      companyName: companyName,
+      address: address,
+      email: email,
+      phone: phone,
+      additionalInfo: additionalInfo
+    });
+  }
+
+  // Listen for form input changes and call updateToFirebase
+  const inputs = document.querySelectorAll('input, textarea');
+  inputs.forEach(input => {
+    input.addEventListener('input', updateToFirebase); // Update to Firebase on input change
+  });
+
+
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyClOoxGngaA4xSaP5Pxdcaw5O73PFSY8z4",
+    authDomain: "totinewmembers.firebaseapp.com",
+    databaseURL: "https://totinewmembers-default-rtdb.firebaseio.com",
+    projectId: "totinewmembers",
+    storageBucket: "totinewmembers.appspot.com",
+    messagingSenderId: "909772825170",
+    appId: "1:909772825170:web:f44c235f154caff504f58b",
+    measurementId: "G-CB48D0X3TW"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+
+    </script>
+</head>
+<body>
+
+<form>
+    <!-- 2 column grid layout with text inputs for the first and last names -->
+    <div class="row mb-4">
+        <div class="col">
+            <div data-mdb-input-init class="form-outline">
+                <input type="text" id="form6Example1" class="form-control" />
+                <label class="form-label" for="form6Example1">First name</label>
+            </div>
+        </div>
+        <div class="col">
+            <div data-mdb-input-init class="form-outline">
+                <input type="text" id="form6Example2" class="form-control" />
+                <label class="form-label" for="form6Example2">Last name</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Text input -->
+    <div data-mdb-input-init class="form-outline mb-4">
+        <input type="text" id="form6Example3" class="form-control" />
+        <label class="form-label" for="form6Example3">Company name</label>
+    </div>
+
+    <!-- Text input -->
+    <div data-mdb-input-init class="form-outline mb-4">
+        <input type="text" id="form6Example4" class="form-control" />
+        <label class="form-label" for="form6Example4">Address</label>
+    </div>
+
+    <!-- Email input -->
+    <div data-mdb-input-init class="form-outline mb-4">
+        <input type="email" id="form6Example5" class="form-control" />
+        <label class="form-label" for="form6Example5">Email</label>
+    </div>
+
+    <!-- Number input -->
+    <div data-mdb-input-init class="form-outline mb-4">
+        <input type="number" id="form6Example6" class="form-control" />
+        <label class="form-label" for="form6Example6">Phone</label>
+    </div>
+
+    <!-- Message input -->
+    <div data-mdb-input-init class="form-outline mb-4">
+        <textarea class="form-control" id="form6Example7" rows="4"></textarea>
+        <label class="form-label" for="form6Example7">Additional information</label>
+    </div>
+
+    <!-- Submit button -->
+    <button data-mdb-ripple-init type="button" class="btn btn-primary btn-block mb-4">Submit</button>
+</form>
+
+<!-- Table to display the form data -->
+<h3>Form Data Preview</h3>
+<table>
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Company Name</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Additional Info</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td id="tableFirstName"></td>
+            <td id="tableLastName"></td>
+            <td id="tableCompanyName"></td>
+            <td id="tableAddress"></td>
+            <td id="tableEmail"></td>
+            <td id="tablePhone"></td>
+            <td id="tableAdditionalInfo"></td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
