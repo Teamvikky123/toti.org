@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Table</title>   
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"], select {
+            padding: 8px;
+            margin: 5px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <!-- Firebase SDKs as ES Modules -->
+     <!-- Firebase SDKs as ES Modules -->
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+    import { getDatabase, ref, push, set, onValue } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyD4hMt5xpsWkCxh9Hzqrdz2wPMRS6sujeA",
+        authDomain: "members-71cdb.firebaseapp.com",
+        databaseURL: "https://members-71cdb-default-rtdb.firebaseio.com",
+        projectId: "members-71cdb",
+        storageBucket: "members-71cdb.appspot.com",
+        messagingSenderId: "73926457310",
+        appId: "1:73926457310:web:e7be35caf8f86f21970f4f",
+        measurementId: "G-B0H0D8V3XJ"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const database = getDatabase(app);
+
+    // Reference for the attendance data
+    const attendanceRef = ref(database, 'attendance');
+
+    // Handle form submission
+    document.getElementById("attendanceForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get form values
+        const surname = document.getElementById("surname").value;
+        const middlename = document.getElementById("middlename").value;
+        const sex = document.getElementById("sex").value;
+        const department = document.getElementById("department").value;
+
+        // Push data to Firebase
+        const newEntryRef = push(attendanceRef);
+        set(newEntryRef, {
+            surname: surname,
+            middlename: middlename,
+            sex: sex,
+            department: department
+        })
+        .then(() => {
+            // Create a new row for the table
+            const newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                <td>${surname}</td>
+                <td>${middlename}</td>
+                <td>${sex}</td>
+                <td>${department}</td>
+            `;
+
+            // Append the new row to the table body
+            document.querySelector("#attendanceTable tbody").appendChild(newRow);
+
+            // Clear the form
+            document.getElementById("attendanceForm").reset();
+        })
+        .catch((error) => {
+            console.error("Error writing data to Firebase: ", error);
+            alert("There was an error adding the entry. Please try again.");
+        });
+    });
+
+    // Load existing attendance data when the page loads
+    window.onload = function() {
+        onValue(attendanceRef, (snapshot) => {
+            const data = snapshot.val();
+            const tbody = document.querySelector("#attendanceTable tbody");
+            tbody.innerHTML = ""; // Clear existing table data
+
+            for (let key in data) {
+                if (data.hasOwnProperty(key)) {
+                    const entry = data[key];
+                    const newRow = document.createElement("tr");
+                    newRow.innerHTML = `
+                        <td>${entry.surname}</td>
+                        <td>${entry.middlename}</td>
+                        <td>${entry.sex}</td>
+                        <td>${entry.department}</td>
+                    `;
+                    tbody.appendChild(newRow);
+                }
+            }
+        });
+    };
+</script>
+
+</head>
+<body>
+
+    <h2>Attendance Information</h2>
+
+    <!-- Form for adding new rows -->
+    <form id="attendanceForm">
+        <label for="surname">Surname:</label>
+        <input type="text" id="surname" name="surname" required>
+
+        <label for="middlename">Middlename:</label>
+        <input type="text" id="middlename" name="middlename" required>
+
+        <label for="sex">Sex:</label>
+        <select id="sex" name="sex" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+
+        <label for="department">Department:</label>
+        <input type="text" id="department" name="department" required>
+
+        <input type="submit" value="Add to Table">
+    </form>
+
+    <table id="attendanceTable">
+        <thead>
+            <tr>
+                <th>Surname</th>
+                <th>Middlename</th>
+                <th>Sex</th>
+                <th>Department</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Existing rows... -->
+        </tbody>
+    </table>
+
+</body>
+</html>
