@@ -4,6 +4,7 @@
             padding: 0;
             width: 100%;
             box-sizing: border-box;
+            
         }
 
         .flex-div {
@@ -16,6 +17,7 @@
             background-size: cover;
             background-position: center;
             width: 100%;
+            box-sizing: border-box;
         }
 
         .text-container {
@@ -146,6 +148,14 @@
 
             .pastorscard {
                 flex-direction: column;
+            }
+            body{
+                box-sizing: border-box;
+                width: 100%;
+                overflow: hidden;
+            }
+            .navi{
+                width: 100%;
             }
         }
         
