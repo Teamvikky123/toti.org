@@ -13,7 +13,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/DSC.jpg)  no-repeat ;
+            background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/here.png)  no-repeat ;
             background-size: cover;
             background-position: center;
             width: 100%;
@@ -100,6 +100,12 @@
                 gap: 1rem;
                 margin: 20px 0;
             }
+            .flex-div {
+                background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/hereph.png)  no-repeat ;
+                background-size: cover;
+                background-position: center;
+                width: 100%;
+            }
 
             .hexgon {
                 flex-direction: column;
@@ -122,6 +128,12 @@
 
 
         @media (max-width: 575px) {
+            .flex-div {
+                background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/hereph.png)  no-repeat ;
+                background-size: cover;
+                background-position: center;
+                width: 100%;
+            }
             .button-div {
                 flex-direction: column;
                 gap: 10px;
@@ -151,8 +163,8 @@
             }
             body{
                 box-sizing: border-box;
-                width: 100%;
-                overflow: hidden;
+                width: 110%;
+                /* overflow: hidden; */
             }
             .navi{
                 width: 100%;

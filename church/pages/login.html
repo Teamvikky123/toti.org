@@ -46,7 +46,8 @@
     // Dummy user data (In real applications, this should come from a server)
     const users = {
         "victor": "admin",  // username: password
-        "user2": "mypassword"
+        "user2": "mypassword",
+        "church":"papa"
     };
 
     // Handle form submission
@@ -65,7 +66,7 @@
             } else {
                 errorMessage.textContent = "Incorrect password. Please try again.";
             }
-        } else {
+        } else { 
             errorMessage.textContent = "Username does not exist.";
         }
     });
