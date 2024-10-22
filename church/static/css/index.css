@@ -19,6 +19,9 @@
             width: 100%;
             box-sizing: border-box;
         }
+        .change>li>a{
+            /* color: white; */
+        }
 
         .text-container {
             height: 29rem;
